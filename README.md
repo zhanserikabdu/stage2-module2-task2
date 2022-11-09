@@ -1,13 +1,12 @@
 # Servlets/Filter/Session
 
 ## Description
-An application has a login page. The correct logins are "user" and "admin". The field "password" is not important. You need to handle login process. To achieve that create 2 servlets, a listener and a filter.
+An application has a login page. The correct logins are "user" and "admin". The field "password" is not important, it can be any non-empty string. You need to handle login process. To achieve that create 2 servlets, a listener and a filter. All servlets, filters and listeners should be declared via annotations.
 
 + AuthFilter
 + ContextListener
 + LoginServlet
 + LogoutServlet
-
 
 ## Details
 
@@ -25,8 +24,8 @@ An application has a login page. The correct logins are "user" and "admin". The 
 + be placed in `com.example.servlet` package.
 + have url `/login`.
 + check session attribute "user".
-+ for **GET** request if the session attribute "user" exists, redirect to the `/login.jsp` page, else redirect to the `/user/hello.jsp`.
-+ for **POST** request check the request attribute "login" in [Users](src/main/java/com/example/Users.java) and the request attribute "password" on being blank. If attributes are correct set session attribute "user" and redirect to `/user/hello.jsp`, else forward to the `/login.jsp`.
++ for **GET** request if the session attribute "user" does not exist, redirect to the `/login.jsp` page, else redirect to the `/user/hello.jsp`.
++ for **POST** request check the request parameters. "login" should exist in [Users](src/main/java/com/example/Users.java) and the request parameter "password" shouldn't be empty. If parameters are correct set session attribute "user" and redirect to `/user/hello.jsp`, else forward to the `/login.jsp`.
 
 **LogoutServlet** should:
 + be placed in `com.example.servlet` package.
